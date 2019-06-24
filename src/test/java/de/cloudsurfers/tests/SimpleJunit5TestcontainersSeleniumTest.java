@@ -27,7 +27,7 @@ class SimpleJunit5TestcontainersSeleniumTest {
 
 
 	@Test
-	void simpleGoogleCall(){
+	void simple_google_call_expecting_recordings_in_target_dir(){
 		 var webDriver = container.getWebDriver();
 
 		webDriver.get("https://www.google.com");
