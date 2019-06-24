@@ -10,7 +10,14 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Objects;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * expecting vnc recordings in target directory
+ */
 @Testcontainers
 class SimpleJunit5TestcontainersSeleniumTest {
 
@@ -28,11 +35,9 @@ class SimpleJunit5TestcontainersSeleniumTest {
 		WebElement elementQ = webDriver.findElement(By.name("q"));
 		elementQ.sendKeys("cheese!");
 		elementQ.submit();
-
-
 		(new WebDriverWait(webDriver, 10)).until(driver -> true);
-
-
 		webDriver.quit();
+
+		assertTrue(Objects.requireNonNull(new File("./target").listFiles((dir, name) -> name.endsWith(".flv"))).length>0);
 	}
 }
